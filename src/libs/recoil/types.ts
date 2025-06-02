@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class AbstractRecoilValue<T> {
   key: string;
   private defaultValue?: T;
