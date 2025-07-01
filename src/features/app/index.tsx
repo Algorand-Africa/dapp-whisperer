@@ -1,13 +1,13 @@
 "use client";
 
-import { Boxes } from "@/features/app/boxes";
-import { Error } from "@/features/app/error";
-import { Transactions } from "@/features/app/transactions";
 import { useAlgorandIndexerService } from "@/libs/algorand/hooks";
 import { IApp, IBox } from "@/libs/algorand/interface";
 import { FC, Suspense, useState } from "react";
 import { BasicInfo } from "./basic-info";
+import { Boxes } from "./boxes";
+import { Error } from "./error";
 import { SearchCard } from "./search-card";
+import { Transactions } from "./transactions";
 
 export const App: FC = () => {
   const [loading, setLoading] = useState(false);
