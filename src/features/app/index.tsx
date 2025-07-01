@@ -2,12 +2,12 @@
 
 import { useAlgorandIndexerService } from "@/libs/algorand/hooks";
 import { IApp, IBox } from "@/libs/algorand/interface";
-import { FC, useState } from "react";
-import { BasicInfo } from "./BasicInfo";
-import { Boxes } from "./Boxes";
-import { Error } from "./Error";
-import { SearchCard } from "./SearchCard";
-import { Transactions } from "./Transactions";
+import { FC, Suspense, useState } from "react";
+import { BasicInfo } from "./basic-info";
+import { Boxes } from "./boxes";
+import { Error } from "./error";
+import { SearchCard } from "./search-card";
+import { Transactions } from "./transactions";
 
 export const App: FC = () => {
   const [loading, setLoading] = useState(false);
@@ -46,11 +46,15 @@ export const App: FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 px-4 py-10">
-      <SearchCard
-        loading={loading}
-        showResults={app !== null}
-        onSubmit={handleSearch}
-      />
+      <Suspense
+        fallback={<div className="text-white text-center">Loading...</div>}
+      >
+        <SearchCard
+          loading={loading}
+          showResults={app !== null}
+          onSubmit={handleSearch}
+        />
+      </Suspense>
 
       <BasicInfo app={app} loading={loading} />
 

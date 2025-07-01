@@ -29,8 +29,8 @@ export class AlgorandIndexerService extends IndexerService {
         deleted: Boolean(application.deleted),
         name,
       };
-    } catch (error: any) {
-      return { error: error.message };
+    } catch (error: unknown) {
+      return { error: (error as Error).message };
     }
   }
 
@@ -77,7 +77,7 @@ export class AlgorandIndexerService extends IndexerService {
   }
 
   async getAppBoxes(appId: number) {
-    const boxNames: any[] = [];
+    const boxNames: Uint8Array<ArrayBufferLike>[] = [];
 
     const getBoxNames = async (token = "") => {
       const result = await this.indexer
@@ -106,7 +106,7 @@ export class AlgorandIndexerService extends IndexerService {
       // console.log("box", result);
 
       boxes.push({
-        name: decodeUint8Array(result.name),
+        name: String(decodeUint8Array(result.name)),
         value: decodeUint8Array(result.value),
       });
     }

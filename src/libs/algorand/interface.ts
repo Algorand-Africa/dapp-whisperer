@@ -1,3 +1,5 @@
+import { ABIValue } from "algosdk";
+
 export interface IApp {
   id: number;
   creator: string;
@@ -7,7 +9,7 @@ export interface IApp {
 
 export interface IBox {
   name: string;
-  value: any;
+  value: ABIValue | null;
 }
 
 export interface ITransaction {

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FC, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FC, useEffect, useState } from "react";
 
 type Props = {
   onSubmit: (appId: string) => void;
@@ -10,7 +11,18 @@ type Props = {
 };
 
 export const SearchCard: FC<Props> = ({ onSubmit, loading, showResults }) => {
+  const searchParams = useSearchParams();
+  const applicationId = searchParams.get("application-id") || "";
   const [appId, setAppId] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    if (applicationId && !isNaN(Number(applicationId))) {
+      setAppId(applicationId);
+      onSubmit(applicationId);
+    }
+  }, [applicationId]);
+
   return (
     <motion.div
       layout
@@ -33,13 +45,20 @@ export const SearchCard: FC<Props> = ({ onSubmit, loading, showResults }) => {
         onSubmit={(e) => {
           e.preventDefault();
           if (!appId) return;
-          onSubmit(appId);
+
+          const url = new URL(window.location.href);
+          url.searchParams.set("application-id", appId);
+          router.push(url.toString());
         }}
       >
         <input
           placeholder="Smart Contract ID"
           value={appId}
-          onChange={(e) => setAppId(e.target.value)}
+          onChange={(e) => {
+            if (!!e.target.value && isNaN(Number(e.target.value))) return;
+
+            setAppId(e.target.value);
+          }}
           disabled={loading}
           className="w-full sm:w-auto flex-1 px-4 py-3 rounded-full outline-none text-purple-700 bg-white placeholder-purple-300 focus:ring-4 focus:ring-purple-300 transition disabled:opacity-50"
         />

@@ -1,10 +1,10 @@
-import { ABIType } from "algosdk";
+import { ABIType, ABIValue } from "algosdk";
 import { TxType } from "./interface";
 
 export function convertUint8ArrayToString(uint8Array: Uint8Array): string {
   const valueWithLength = new TextDecoder().decode(uint8Array);
   const lengthPrefix = valueWithLength.charCodeAt(1);
-  const value: any = valueWithLength.slice(2, 2 + lengthPrefix);
+  const value: string = valueWithLength.slice(2, 2 + lengthPrefix);
   return value;
 }
 
@@ -12,7 +12,7 @@ export function convertBase64ToString(base64: string): string {
   return Buffer.from(base64, "base64").toString("utf-8");
 }
 
-export function decodeUint8Array(uint8Array: Uint8Array): any {
+export function decodeUint8Array(uint8Array: Uint8Array): ABIValue | null {
   // TODO: add more types
   const scalarTypes: string[] = [
     "string",
@@ -89,10 +89,10 @@ export function decodeUint8Array(uint8Array: Uint8Array): any {
   return null;
 }
 
-function readStringUntilNull(bytes: Uint8Array): string {
-  const end = bytes.findIndex((b) => b === 0);
-  return String.fromCharCode(...(end >= 0 ? bytes.slice(0, end) : bytes));
-}
+// function readStringUntilNull(bytes: Uint8Array): string {
+//   const end = bytes.findIndex((b) => b === 0);
+//   return String.fromCharCode(...(end >= 0 ? bytes.slice(0, end) : bytes));
+// }
 
 function removeUnrecognizedCharacters(string: string): string {
   return string.replace(/[^a-zA-Z0-9 ]/g, "");
