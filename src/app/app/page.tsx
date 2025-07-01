@@ -1,5 +1,5 @@
-import { App } from "@/features/app";
+import { Whisperer } from "@/features/whisperer";
 
 export default function Page() {
-  return <App />;
+  return <Whisperer />;
 }

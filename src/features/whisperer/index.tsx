@@ -9,7 +9,7 @@ import { Error } from "./error";
 import { SearchCard } from "./search-card";
 import { Transactions } from "./transactions";
 
-export const App: FC = () => {
+export const Whisperer: FC = () => {
   const [loading, setLoading] = useState(false);
   const [app, setApp] = useState<IApp | null>(null);
   const [boxes, setBoxes] = useState<IBox[]>([]);
