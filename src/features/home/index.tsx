@@ -12,7 +12,7 @@ export const Home: FC = () => {
         <p className="mb-8 text-xl md:text-2xl text-white/90">
           Making Algorand dApp activity human-readable
         </p>
-        <Link href="/app">
+        <Link href="/whisperer">
           <button
             className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold 
           hover:bg-purple-100 transform hover:scale-105 transition-all duration-200"
