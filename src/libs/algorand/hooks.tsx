@@ -1,3 +1,5 @@
+"use client";
+
 import { useContext } from "react";
 import { AlgorandContext } from "./algorand-context";
 
@@ -19,4 +21,9 @@ export const useAlgorandIndexer = () => {
 export const useAlgorandAlgod = () => {
   const { algod } = useAlgorand();
   return algod;
+};
+
+export const useAlgorandIndexerService = () => {
+  const { indexerService } = useAlgorand();
+  return indexerService;
 };

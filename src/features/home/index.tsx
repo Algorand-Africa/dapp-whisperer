@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 
 export const Home: FC = () => {
@@ -11,12 +12,14 @@ export const Home: FC = () => {
         <p className="mb-8 text-xl md:text-2xl text-white/90">
           Making Algorand dApp activity human-readable
         </p>
-        <button
-          className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold 
+        <Link href="/app">
+          <button
+            className="px-8 py-3 bg-white text-purple-600 rounded-full font-semibold 
           hover:bg-purple-100 transform hover:scale-105 transition-all duration-200"
-        >
-          Explore the Chain
-        </button>
+          >
+            Explore the Chain
+          </button>
+        </Link>
       </section>
 
       {/* What is Section */}
