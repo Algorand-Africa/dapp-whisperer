@@ -103,8 +103,6 @@ export class AlgorandIndexerService extends IndexerService {
         .lookupApplicationBoxByIDandName(appId, boxName)
         .do();
 
-      // console.log("box", result);
-
       boxes.push({
         name: String(decodeUint8Array(result.name)),
         value: decodeUint8Array(result.value),
